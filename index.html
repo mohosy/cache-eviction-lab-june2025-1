@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cache Eviction Lab</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main class="layout">
+      <section class="left">
+        <p class="eyebrow">Systems Simulator</p>
+        <h1>Cache Eviction Lab</h1>
+        <p class="desc">Compare FIFO, LRU, and LFU on the same memory trace and inspect hit/miss dynamics.</p>
+
+        <div class="card">
+          <h2>Config</h2>
+          <label>Cache Size
+            <input id="sizeInput" type="range" min="2" max="12" step="1" value="5" />
+            <span id="sizeValue">5</span>
+          </label>
+          <label>Address Space
+            <input id="spaceInput" type="range" min="8" max="48" step="1" value="20" />
+            <span id="spaceValue">20</span>
+          </label>
+          <label>Trace Length
+            <input id="lengthInput" type="range" min="20" max="220" step="5" value="90" />
+            <span id="lengthValue">90</span>
+          </label>
+          <label>Algorithm
+            <select id="algoSelect">
+              <option value="fifo">FIFO</option>
+              <option value="lru">LRU</option>
+              <option value="lfu">LFU</option>
+            </select>
+          </label>
+        </div>
+
+        <div class="card">
+          <h2>Actions</h2>
+          <div class="row">
+            <button id="generateBtn">Generate Trace</button>
+            <button id="stepBtn">Step</button>
+          </div>
+          <div class="row">
+            <button id="runBtn">Run All</button>
+            <button id="resetBtn">Reset</button>
+          </div>
+        </div>
+
+        <div class="card metrics">
+          <h2>Results</h2>
+          <p>Hits: <strong id="hitsText">0</strong></p>
+          <p>Misses: <strong id="missesText">0</strong></p>
+          <p>Hit Rate: <strong id="rateText">0%</strong></p>
+          <p>Evictions: <strong id="evictionsText">0</strong></p>
+        </div>
+      </section>
+
+      <section class="right">
+        <article class="card">
+          <h2>Memory Trace</h2>
+          <div id="trace" class="trace"></div>
+        </article>
+        <article class="card">
+          <h2>Cache Frames</h2>
+          <div id="cacheView" class="cache"></div>
+        </article>
+        <article class="card">
+          <h2>Timeline</h2>
+          <canvas id="timeline" width="960" height="220"></canvas>
+        </article>
+      </section>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>
